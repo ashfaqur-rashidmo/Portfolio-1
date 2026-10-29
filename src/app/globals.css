@@ -1,26 +1,286 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---------------------------------------------------------------------------
+   Design tokens (Tailwind v4 @theme).
+   Generates utilities: bg-ink/bg-navy/bg-card, bg-brand, bg-accent,
+   border-line, text-title/text-body/text-muted, text-success, shadow-soft.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Surfaces */
+  --color-ink: #0b1120; /* primary background — deep midnight navy */
+  --color-navy: #111827; /* secondary background — dark slate */
+  --color-card: #172033; /* elevated card background */
+
+  /* Accents */
+  --color-brand: #38bdf8; /* primary interactive accent — sky blue */
+  --color-accent: #a78bfa; /* secondary accent, gradients/decoration only */
+  --color-success: #34d399; /* positive/emerald accent */
+
+  /* Text */
+  --color-title: #f8fafc; /* primary text */
+  --color-body: #cbd5e1; /* secondary text */
+  --color-muted: #94a3b8; /* muted text */
+
+  /* Border */
+  --color-line: #263449; /* subtle dark blue-gray */
+
+  /* Elevation */
+  --shadow-soft: 0 10px 30px rgba(2, 8, 23, 0.35);
+
+  /* Typography (fonts loaded via next/font in layout.tsx) */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--color-ink);
+  color: var(--color-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: rgba(56, 189, 248, 0.28);
+  color: var(--color-title);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Layout
+--------------------------------------------------------------------------- */
+.container-wide {
+  width: 90%;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.section-pad {
+  padding: 80px 0;
+}
+
+@media (max-width: 640px) {
+  .container-wide {
+    width: 92%;
+  }
+
+  .section-pad {
+    padding: 55px 0;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Shared primitives
+--------------------------------------------------------------------------- */
+/* Small label shown above section headings */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 13px;
+  border: 1px solid var(--color-line);
+  border-radius: 9999px;
+  background-color: rgba(56, 189, 248, 0.06);
+  color: var(--color-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+}
+
+.section-heading {
+  font-size: clamp(30px, 3.6vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--color-title);
+}
+
+.section-copy {
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+/* Gradient headline emphasis (sky → violet, kept subtle) */
+.gradient-text {
+  background: linear-gradient(90deg, var(--color-brand), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Buttons — one system for every CTA on the site */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.8rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-brand);
+  color: var(--color-ink);
+}
+
+.btn-primary:hover {
+  background-color: #5cc4f8;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-line);
+  background-color: transparent;
+  color: var(--color-title);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+/* Form fields */
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line);
+  background-color: var(--color-navy);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--color-title);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.field::placeholder {
+  color: #64748b;
+}
+
+.field:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+/* ---------------------------------------------------------------------------
+   Component styles
+--------------------------------------------------------------------------- */
+/* Navbar */
+.nav-blur {
+  background-color: rgba(11, 17, 32, 0.82);
+  backdrop-filter: blur(12px);
+}
+
+/* Hero background: faint dot grid + two soft accent glows */
+.hero-grid {
+  background-image: radial-gradient(
+    rgba(148, 163, 184, 0.14) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+}
+
+/* Project cards */
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 18px 40px rgba(2, 8, 23, 0.5);
+}
+
+/* Skill progress bars */
+.skill-track {
+  height: 6px;
+  background-color: var(--color-navy);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-brand),
+    var(--color-accent)
+  );
+  border-radius: 9999px;
+}
+
+/* ---------------------------------------------------------------------------
+   Motion: lightweight entrance animation (disabled via reduced-motion above)
+--------------------------------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise-1 {
+  animation: rise 0.55s ease-out both;
+}
+
+.rise-2 {
+  animation: rise 0.55s ease-out 0.08s both;
+}
+
+.rise-3 {
+  animation: rise 0.55s ease-out 0.16s both;
+}
+
+.rise-4 {
+  animation: rise 0.55s ease-out 0.24s both;
 }

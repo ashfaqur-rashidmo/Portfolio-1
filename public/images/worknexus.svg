@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" role="img" aria-label="Project preview placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="1" stop-color="#172033"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="380" fill="url(#bg)"/>
+  <g stroke="#263449" stroke-width="1">
+    <path d="M0 76h600M0 152h600M0 228h600M0 304h600M100 0v380M200 0v380M300 0v380M400 0v380M500 0v380"/>
+  </g>
+  <circle cx="300" cy="170" r="74" fill="none" stroke="url(#acc)" stroke-width="3"/>
+  <text x="300" y="188" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="800" fill="url(#acc)">&lt;/&gt;</text>
+  <text x="300" y="290" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" letter-spacing="4" fill="#94A3B8">PROJECT · PREVIEW</text>
+</svg>
