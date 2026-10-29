@@ -1,9 +1,11 @@
+import type { StaticImageData } from "next/image";
+
 export interface Project {
   slug: string;
   name: string;
   tagline: string;
   description: string;
-  image: string;
+  image: string | StaticImageData,
   category: string;
   stack: string[];
   liveUrl: string;
