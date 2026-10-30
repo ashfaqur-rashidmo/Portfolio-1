@@ -126,8 +126,8 @@ export const projects: Project[] = [
     image: Wanderlust,
     description: "A travel blog concept focused on sharing experiences and providing a structured entry point for travelers.",
     stack: ["Next.js", "Typescript", "Tailwind CSS", "REST API"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://wanderlust-topaz-phi.vercel.app/",
+    githubUrl: "https://github.com/ashfaqur-rashidmo/Wanderlust-Full-Stack",
     challenges: [
       "Connecting a Next.js frontend to a separate Django backend.",
       "Keeping authentication endpoints and frontend form behavior consistent.",

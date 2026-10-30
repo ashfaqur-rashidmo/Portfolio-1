@@ -90,19 +90,12 @@ const Hero = () => {
               </span>
             </div>
 
-            {/* Scroll Link */}
-            <a
-              href="/about"
-              className="rise-4 mt-12 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[.18em] text-muted transition hover:text-brand"
-            >
-              Scroll to explore
-              <ArrowDown size={14} />
-            </a>
+            
           </div>
 
           {/* Right Section: Profile Image */}
           <div className="relative mx-auto flex w-full max-w-[420px] items-center justify-center">
-            <div className="pointer-events-none absolute inset-8 rounded-full bg-accent/[0.08] blur-3xl" />
+            <div className="pointer-events-none absolute inset-8 rounded-full bg-accent/8 blur-3xl" />
 
             <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-line shadow-soft sm:h-80 sm:w-80">
               <Image

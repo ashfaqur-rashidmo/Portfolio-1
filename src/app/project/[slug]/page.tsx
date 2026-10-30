@@ -37,7 +37,7 @@ const ProjectDetailsPage = async ({ params }: Props) => {
 
               <p className="mt-6 text-xs font-extrabold uppercase tracking-[.18em] text-brand">{project.tagline}</p>
 
-              <h1 className="mt-3 text-4xl font-black tracking-[-.05em] text-title sm:text-6xl">{project.name}</h1>
+              <h1 className="mt-3 text-4xl font-black tracking-tigher text-title sm:text-6xl">{project.name}</h1>
 
               <p className="mt-6 text-lg leading-8 text-body">
                 {project.description}</p>
@@ -80,7 +80,7 @@ const ProjectDetailsPage = async ({ params }: Props) => {
             <p className="mt-2 text-sm leading-6 text-muted">Potential next steps to make this project more complete and useful.</p>
             <div className="mt-6 grid gap-4 md:grid-cols-3">{project.improvements.map((item, index) => <div key={item} className="rounded-2xl bg-navy p-5"><span className="text-xs font-black text-brand">0{index + 1}</span><p className="mt-3 text-sm font-semibold leading-6 text-body">{item}</p></div>)}</div>
           </section>
-          <div className="mt-8 rounded-3xl border border-line bg-gradient-to-r from-brand/10 via-transparent to-accent/10 p-7 text-title sm:flex sm:items-center sm:justify-between"><div><h2 className="text-xl font-extrabold">Want to know more?</h2><p className="mt-2 text-sm text-body">Reach out if you would like to discuss this project.</p></div>
+          <div className="mt-8 rounded-3xl border border-line bg-linear-to-r from-brand/10 via-transparent to-accent/10 p-7 text-title sm:flex sm:items-center sm:justify-between"><div><h2 className="text-xl font-extrabold">Want to know more?</h2><p className="mt-2 text-sm text-body">Reach out if you would like to discuss this project.</p></div>
           <Link href="/contact" className="btn btn-primary mt-5 sm:mt-0">Contact me <ArrowUpRight size={15} />
           </Link>
           </div>
